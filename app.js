@@ -34,9 +34,34 @@ const sequareClicked = (el) => {
     } else {
       currentPlayer = turn
     }
+    if (checkForWinner() !== false) {
+      messageEl = `${currentPlayer} has won`
+      let winner = checkForWinner()
+      console.log(winner)
+    }
   }
 }
 
+const checkForWinner = (board) => {
+  const winngCombination = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+  for (let i = 0; i < winngCombination.length; i++) {
+    const [a, b, c] = winngCombination[i]
+    if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
+      console.log(board[a])
+      return board[a]
+    }
+  }
+  return null
+}
 const restart = () => {
   board.fill(null)
   squareEls.forEach((sequare) => {
@@ -45,23 +70,5 @@ const restart = () => {
   currentPlayer = turn
 }
 restartBtn.addEventListener('click', restart)
-//   sqr.addEventListener('click', play)
-//   console.log("")
 
-// // const init = () => {
-// //   squareEls.forEach((cell) => {
-// //     cell.addEventListener('click', play)
-// //     console.log('we choose a cell')
-// //     render()
-// //   })
-// //   render()
-// //   console.log('here are the winner')
-// // }
-// // // const updateMessage = () => {
-// // //   board.forEach((boards))=>{}
-// // // }
-// // /*----------------------------- Event Listeners -----------------------------*/
-// // board.forEach((boards) => {
-// //   document.querySelector(`${boards}`).addEventListener('click', play)
-// })
 startGmae()
