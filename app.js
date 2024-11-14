@@ -55,12 +55,16 @@ const checkForWinner = (board) => {
   ]
   for (let i = 0; i < winngCombination.length; i++) {
     const [a, b, c] = winngCombination[i]
-    if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
+    if (
+      board[winngCombination[i][0]] !== '' &&
+      board[winngCombination[i][1]] === board[winngCombination[i][0]] &&
+      board[winngCombination[i][2]] === board[winngCombination[i][1]]
+    ) {
       console.log(board[a])
       return board[a]
     }
   }
-  return null
+  // return null
 }
 const restart = () => {
   board.fill(null)
